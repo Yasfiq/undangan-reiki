@@ -20,8 +20,76 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.flowerContainer {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  overflow: hidden;
+  z-index: 999;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.flower {
+  position: absolute;
+  top: -10vh;
+  width: 30px;
+  height: 30px;
+  background-image: url("/images/bunga.png"); /* Gambar bunga */
+  background-size: contain;
+  background-repeat: no-repeat;
+  animation-name: fall;
+  animation-timing-function: linear;
+  opacity: 0.8;
+}
+
+@font-face {
+  font-family: "Great Vibes";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/GreatVibes-Regular.ttf) format("ttf");
+}
+
+@font-face {
+  font-family: "Holy Friday";
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/Holy-Friday.otf) format("otf");
+}
+
+@font-face {
+  font-family: "Open Sans";
+  src: url(/fonts/OpenSans_Condensed-Light.ttf) format("ttf");
+}
+
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  .pasangan-pria {
+    background-image: url(/images/reiki.jpg);
+    transition: 0.7s;
+  }
+  .pasangan-pria:hover {
+    background-size: 700px;
+  }
+  .pasangan-wanita {
+    background-image: url(/images/irma.jpg);
+    transition: 0.7s;
+  }
+  .pasangan-wanita:hover {
+    background-size: 700px;
   }
 }
