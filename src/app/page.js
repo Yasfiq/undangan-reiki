@@ -49,7 +49,7 @@ export default function Home() {
                   transition={{ duration: 1 }}
                 >
                   <h2 className="text-2xl">
-                    Dear {searchParams.get("to") || "Invisitory"},
+                    Dear {searchParams.get("/to") || "Invisitory"},
                   </h2>
                   <h1 className="text-4xl font-holyfriday">You're Invited!</h1>
                 </motion.div>
