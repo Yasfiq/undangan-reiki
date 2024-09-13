@@ -37,7 +37,7 @@ export default function Home() {
 
   return (
     <div>
-      {isOpen && <FallingFlowers />}
+      {/* {isOpen && <FallingFlowers />} */}
       <div className="bg-[url('https://i.pinimg.com/564x/69/6e/40/696e40288349d2c68150b6427fb699c2.jpg')] min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
         <div className="p-8 w-full max-w-md">
           <div className="text-center mb-6 text-white">
