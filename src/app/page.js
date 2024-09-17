@@ -274,7 +274,7 @@ export default function Home() {
               height={320}
             />
 
-            <div className="bg-primary text-white pb-5">
+            <div className="bg-primary text-white pb-16">
               <WeddingGift />
             </div>
 

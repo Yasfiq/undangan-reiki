@@ -1,6 +1,8 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useRef } from "react";
 
 const FallingFlowers = () => {
+  const flowersRef = useRef([]);
+
   useEffect(() => {
     const container = document.querySelector("#flower-container");
 
@@ -8,21 +10,42 @@ const FallingFlowers = () => {
       const flower = document.createElement("div");
       flower.classList.add("flower");
       flower.style.left = Math.random() * 100 + "vw";
-      flower.style.animationDelay = "0s";
-      flower.style.animationDuration = Math.random() * 3 + 5 + "s";
+      flower.dataset.speed = Math.random() * 3 + 5; // Set kecepatan bunga jatuh
       container.appendChild(flower);
 
-      // Hapus bunga setelah selesai animasi untuk menghindari terlalu banyak elemen
-      setTimeout(() => {
-        container.removeChild(flower);
-      }, 8000); // Sesuaikan dengan durasi animasi
+      // Simpan referensi ke elemen bunga
+      flowersRef.current.push(flower);
     };
 
-    // Buat bunga baru setiap 500ms
+    // Buat bunga baru setiap 1500ms
     const flowerInterval = setInterval(createFlower, 1500);
 
-    // Bersihkan interval saat komponen di-unmount
-    return () => clearInterval(flowerInterval);
+    // Fungsi untuk menjalankan animasi dengan requestAnimationFrame
+    const animateFlowers = () => {
+      flowersRef.current.forEach((flower, index) => {
+        const currentTop = parseFloat(flower.style.top || "-10vh"); // Ambil posisi top sekarang
+        const speed = parseFloat(flower.dataset.speed); // Ambil kecepatan dari data atribut
+        flower.style.top = currentTop + speed + "px"; // Update posisi bunga
+
+        // Hapus bunga jika sudah keluar layar
+        if (currentTop > window.innerHeight) {
+          container.removeChild(flower);
+          flowersRef.current.splice(index, 1); // Hapus dari array
+        }
+      });
+
+      // Panggil animasi lagi untuk frame berikutnya
+      requestAnimationFrame(animateFlowers);
+    };
+
+    // Mulai animasi
+    requestAnimationFrame(animateFlowers);
+
+    // Bersihkan interval dan bunga saat komponen di-unmount
+    return () => {
+      clearInterval(flowerInterval);
+      flowersRef.current.forEach((flower) => container.removeChild(flower));
+    };
   }, []);
 
   return <div id="flower-container" className="flowerContainer"></div>;
