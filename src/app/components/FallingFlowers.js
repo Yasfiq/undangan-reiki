@@ -19,7 +19,7 @@ const FallingFlowers = () => {
     };
 
     // Buat bunga baru setiap 500ms
-    const flowerInterval = setInterval(createFlower, 300);
+    const flowerInterval = setInterval(createFlower, 1500);
 
     // Bersihkan interval saat komponen di-unmount
     return () => clearInterval(flowerInterval);

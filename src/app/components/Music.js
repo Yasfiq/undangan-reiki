@@ -15,12 +15,12 @@ const MusicPlayer = () => {
     }
   };
 
-  useEffect(() => {
-    if (audioRef) {
-      audioRef.current.play();
-      setIsPlaying(true);
-    }
-  }, [audioRef]);
+  // useEffect(() => {
+  //   if (audioRef) {
+  //     audioRef.current.play();
+  //     setIsPlaying(true);
+  //   }
+  // }, [audioRef]);
 
   return (
     <div className="fixed right-0 bottom-0 p-2">

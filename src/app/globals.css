@@ -47,7 +47,7 @@ body {
   top: -10vh;
   width: 30px;
   height: 30px;
-  background-image: url("/images/bunga.png"); /* Gambar bunga */
+  background-image: url("/images/bunga.webp"); /* Gambar bunga */
   background-size: contain;
   background-repeat: no-repeat;
   animation-name: fall;
@@ -70,8 +70,8 @@ body {
 }
 
 @font-face {
-  font-family: "Open Sans";
-  src: url(/fonts/OpenSans_Condensed-Light.ttf);
+  font-family: "Challista Script";
+  src: url(/fonts/Challista.otf);
 }
 
 @layer utilities {

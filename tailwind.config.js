@@ -15,7 +15,7 @@ module.exports = {
       fontFamily: {
         greatvibes: ["Great Vibes", "sans-serif"],
         holyfriday: ["Holy Friday", "sans-serif"],
-        sans: ["Open Sans", "sans-serif"],
+        challista: ["Challista Script", "sans-serif"],
       },
     },
   },

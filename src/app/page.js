@@ -12,12 +12,18 @@ import Image from "next/image";
 import PhotoGallery from "./components/PhotoGallery";
 import WeddingGift from "./components/WeddingGift";
 import { useSearchParams } from "next/navigation";
+import { addData, getAllData } from "./lib/firebase/collection";
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
-
   const [windowWidth, setWindowWidth] = useState(0);
+  const [isJoin, setIsJoin] = useState(null);
+  const [fullName, setFullName] = useState("");
+  const [userName, setUserName] = useState("");
+  const [wish, setWish] = useState("");
+  const noWhatsapp = "6285891185933";
+  const [wishes, setWishes] = useState([]);
 
   useEffect(() => {
     // Fungsi untuk mengupdate state dengan lebar jendela saat ini
@@ -35,9 +41,25 @@ export default function Home() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
+  useEffect(() => {
+    const fetchData = async () => {
+      const data = await getAllData("UNDANGAN_REIKI");
+      setWishes(data);
+    };
+
+    fetchData().catch(console.error);
+  }, []);
+
+  const handleSendWish = async () => {
+    await addData({ username: userName, wish });
+    setWishes([...wishes, { username: userName, wish }]);
+    setUserName("");
+    setWish("");
+  };
+
   return (
     <div>
-      {/* {isOpen && <FallingFlowers />} */}
+      {isOpen && <FallingFlowers />}
       <div className="bg-[url('https://i.pinimg.com/564x/69/6e/40/696e40288349d2c68150b6427fb699c2.jpg')] min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat">
         <div className="p-8 w-full max-w-md">
           <div className="text-center mb-6 text-white">
@@ -48,8 +70,8 @@ export default function Home() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1 }}
                 >
-                  <h2 className="text-2xl">
-                    Dear {searchParams.get("/to") || "Invisitory"},
+                  <h2 className="text-2xl font-holyfriday">
+                    Dear {searchParams.get("to") || "Invisitory"},
                   </h2>
                   <h1 className="text-4xl font-holyfriday">You're Invited!</h1>
                 </motion.div>
@@ -57,15 +79,15 @@ export default function Home() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="text-lg font-medium tracking-widest"
+                  className="text-3xl font-bold font-challista"
                 >
                   The Wedding Celebration of
                 </motion.h3>
               </>
             )}
             {isOpen && (
-              <h3 className="text-lg font-medium tracking-widest">
-                WE ARE GETTTING MARRIED
+              <h3 className="text-5xl font-challista">
+                We Are Getting Married
               </h3>
             )}
             <motion.h2
@@ -76,11 +98,6 @@ export default function Home() {
             >
               Reiki & Irma
             </motion.h2>
-            {isOpen && (
-              <h3 className="text-lg font-medium tracking-widest">
-                13 OKTOBER 2024
-              </h3>
-            )}
           </div>
           {!isOpen && (
             <motion.div
@@ -90,7 +107,7 @@ export default function Home() {
               className="flex justify-center"
             >
               <div
-                className="bg-white hover:bg-gray-100 text-black font-bold py-2 px-12 rounded-full focus:outline-none focus:shadow-outline cursor-pointer"
+                className="bg-white shadow-xl hover:bg-gray-100 text-black font-bold py-2 px-12 rounded-full focus:outline-none focus:shadow-outline cursor-pointer"
                 onClick={() => setIsOpen(true)}
               >
                 Open Invitation
@@ -124,22 +141,23 @@ export default function Home() {
             ></path>
           </svg>
 
-          <div className="bg-white text-primary text-center min-h-screen pb-10 md:pb-20">
-            <h3 className="w-[60%] mx-auto">
-              "At vero eos et accusamus et iusto odio dignissimos ducimus qui
-              blanditiis praesentium voluptatum deleniti atque corrupti quos
-              dolores et quas to odio dignissimos ducimus molestias excepturi"
+          <div className="bg-white text-primary text-center min-h-screen py-10 md:pb-20 -mt-1">
+            <h3 className="w-[80%] mx-auto font-greatvibes text-xl">
+              “Wahai manusia, bertakwalah kepada Tuhan-mu Yang menciptakan kamu
+              dari satu jiwa dan darinya Dia menciptakan jodohnya, dan
+              mengembang-biakan dari keduanya banyak laki-laki dan perempuan”.
             </h3>
+            <p className="font-greatvibes mt-4 text-md">An-Nisa 1</p>
 
             {/* Foto Pasangan */}
             <div className="flex my-10 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 ">
-              <div className="md:w-[550px] w-[300px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria bg-[length:900px] bg-center overflow-hidden">
-                <div className="w-full h-full bg-[rgba(0,0,0,.2)] hover:bg-[rgba(0,0,0,.3)] duration-500 flex flex-col items-center justify-end pb-8">
-                  <h3 className="font-greatvibes text-3xl md:text-5xl">
+              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria bg-[length:900px] bg-center overflow-hidden">
+                <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
+                  <h3 className="font-greatvibes text-4xl md:text-5xl">
                     Reiki Alisyahbana
                   </h3>
-                  <p className="text-sm md:text-xl font-sans font-light">
-                    The son of <br />
+                  <p className="text-sm md:text-xl font-light font-holyfriday">
+                    Putra dari <br />
                     Mr. Roy Sarob & Mrs. Rina Saona
                   </p>
                   <Link
@@ -153,13 +171,11 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="md:w-[550px] w-[300px] h-[300px] md:h-[500px] rounded-3xl pasangan-wanita bg-[length:900px] bg-center overflow-hidden">
-                <div className="w-full h-full bg-[rgba(0,0,0,.2)] hover:bg-[rgba(0,0,0,.3)] duration-500 flex flex-col items-center justify-end pb-8">
-                  <h3 className="font-greatvibes text-3xl md:text-5xl">
-                    Irma Alisyahbana
-                  </h3>
-                  <p className="text-sm md:text-xl font-sans font-light">
-                    The son of <br />
+              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-wanita bg-[length:900px] bg-center overflow-hidden">
+                <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
+                  <h3 className="font-greatvibes text-4xl md:text-5xl">Irma</h3>
+                  <p className="text-sm md:text-xl font-light font-holyfriday">
+                    Putri dari <br />
                     Mr. Man & Mrs. Woman
                   </p>
                   <Link
@@ -183,7 +199,7 @@ export default function Home() {
               height={320}
             />
 
-            <div className="bg-primary text-white">
+            <div className="bg-primary text-white -mt-1 pt-10">
               {/* Countdown */}
               <h3 className="font-greatvibes text-white text-3xl md:text-5xl font-bold mb-5">
                 Counting Down
@@ -193,7 +209,6 @@ export default function Home() {
               {/* Add to Calendar */}
               <AddToCalendarButton />
 
-              {/* Reception */}
               <Image
                 src="/images/decoration1.png"
                 width={400}
@@ -201,12 +216,26 @@ export default function Home() {
                 className="mt-20 mx-auto mb-10"
               />
               <h3 className="font-greatvibes text-white text-5xl font-bold mb-5">
+                Akad
+              </h3>
+              <p className="text-3xl font-challista font-light">
+                Sunday, October 13, 2024 at 8:00 AM
+              </p>
+              <p className="text-md font-holyfriday font-light">
+                Jombang, Jawa Timur, Indonesia
+              </p>
+
+              {/* View Location */}
+              <ViewLocationButton />
+
+              {/* Reception */}
+              <h3 className="font-greatvibes text-white text-5xl font-bold mb-5 mt-10">
                 Reception
               </h3>
-              <p className="text-2xl font-sans font-light">
-                Sunday, October 13, 2024 at 9:00 AM
+              <p className="text-3xl font-challista font-light">
+                Sunday, October 13, 2024 at 10:00 AM
               </p>
-              <p className="text-2xl font-bold font-sans">
+              <p className="text-md font-holyfriday font-light">
                 Jombang, Jawa Timur, Indonesia
               </p>
 
@@ -223,14 +252,14 @@ export default function Home() {
 
             <Image
               src="/images/wave2.png"
-              className="w-full rotate-180"
+              className="w-full rotate-180 -mt-1"
               alt=""
               width={windowWidth}
               height={320}
             />
 
-            <div>
-              <h3 className="font-greatvibes text-primary text-3xl md:text-5xl font-bold mb-5">
+            <div className="pt-10">
+              <h3 className="font-greatvibes text-primary text-3xl md:text-5xl font-bold mb-10">
                 Gallery
               </h3>
 
@@ -245,8 +274,125 @@ export default function Home() {
               height={320}
             />
 
-            <div className="bg-primary text-white pb-20">
+            <div className="bg-primary text-white pb-5">
               <WeddingGift />
+            </div>
+
+            <Image
+              src="/images/wave3.png"
+              className="w-full rotate-180 -mt-1"
+              alt=""
+              width={windowWidth}
+              height={320}
+            />
+
+            <div className="bg-white text-primary pt-10 font-holyfriday">
+              <h3 className="font-greatvibes text-3xl md:text-5xl font-bold mb-5">
+                Reservation
+              </h3>
+
+              <div className="flex text-left flex-col px-10">
+                <p>
+                  Will you join with us?<span className="text-red-400">*</span>
+                </p>
+                <div className="flex items-center">
+                  <input
+                    id="definitelyYes"
+                    type="radio"
+                    value="Definitely Yes"
+                    name="attendance"
+                    className="mr-2 accent-primary"
+                    onChange={() => setIsJoin(true)}
+                    checked={isJoin}
+                  />
+                  <label for="definitelyYes">Definitely Yes</label>
+                </div>
+                <div className="flex items-center">
+                  <input
+                    id="cannotAttend"
+                    type="radio"
+                    value="Sorry, I Can't Attend Your Wedding"
+                    name="attendance"
+                    className="mr-2 accent-primary"
+                    onChange={() => setIsJoin(false)}
+                    checked={!isJoin && isJoin !== null}
+                  />
+                  <label for="cannotAttend">
+                    Sorry, I Can't Attend Your Wedding
+                  </label>
+                </div>
+
+                <label htmlFor="name" className="text-left mt-5 mb-1 block">
+                  Full Name<span className="text-red-400">*</span>
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  className="block focus:outline-none ring-1 ring-primary px-2 py-1 rounded-md selection:text-white selection:bg-primary"
+                  onChange={(e) => setFullName(e.target.value)}
+                />
+
+                {fullName && isJoin !== null && (
+                  <Link
+                    href={`https://wa.me/${noWhatsapp}?text=Hello, I'm ${fullName} and I Will Join To Your Wedding Reception
+`}
+                    target="_blank"
+                  >
+                    <div className="cursor-pointer px-5 py-1 shadow-xl bg-primary text-white rounded-xl mt-5 w-fit">
+                      Send
+                    </div>
+                  </Link>
+                )}
+              </div>
+
+              <h3 className="font-greatvibes text-3xl md:text-5xl font-bold mb-5 mt-20">
+                Send Wishes
+              </h3>
+
+              <div className="max-h-[220px] overflow-y-scroll">
+                {wishes.map((item) => (
+                  <div className="rounded-xl shadow-xl border w-[90%] bg-white px-5 py-3 mx-auto text-left mb-1">
+                    <h5 className="text-sm">{item.username}</h5>
+                    <p className="text-gray-600 text-xs">{item.wish}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="w-[80%] mx-auto flex flex-col">
+                <label
+                  htmlFor="name"
+                  className="text-left mt-5 mb-1 block text-sm"
+                >
+                  Name<span className="text-red-400">*</span>
+                </label>
+                <input
+                  id="name"
+                  type="text"
+                  className="block focus:outline-none ring-1 ring-primary px-2 py-1 rounded-md selection:text-white selection:bg-primary text-sm"
+                  onChange={(e) => setUserName(e.target.value)}
+                  value={userName}
+                />
+
+                <label
+                  htmlFor="name"
+                  className="text-left mt-3 mb-1 block text-sm"
+                >
+                  Wish<span className="text-red-400">*</span>
+                </label>
+                <textarea
+                  id="name"
+                  type="text"
+                  className="block h-[100px] focus:outline-none ring-1 ring-primary px-2 py-1 rounded-md selection:text-white selection:bg-primary text-sm"
+                  onChange={(e) => setWish(e.target.value)}
+                  value={wish}
+                />
+                <div
+                  className="cursor-pointer px-5 py-1 shadow-xl bg-primary text-white rounded-xl mt-5 w-fit"
+                  onClick={handleSendWish}
+                >
+                  Send Wish
+                </div>
+              </div>
             </div>
           </div>
         </div>
