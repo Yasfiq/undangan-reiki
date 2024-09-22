@@ -8,7 +8,7 @@ const Countdown = () => {
     seconds: 0,
   });
 
-  const countdownDate = new Date("2024-10-12T09:00:00").getTime(); // Set target waktu countdown
+  const countdownDate = new Date("2024-10-13T08:00:00").getTime(); // Set target waktu countdown
 
   useEffect(() => {
     const timer = setInterval(() => {

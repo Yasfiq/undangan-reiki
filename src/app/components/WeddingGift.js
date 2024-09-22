@@ -6,8 +6,8 @@ const WeddingGift = () => {
   const [dataRekening, setDataRekening] = useState({
     isCopy1: false,
     isCopy2: false,
-    account1: "1234567890",
-    account2: "0234562313",
+    account1: "7361250536",
+    // account2: "0234562313",
   });
   const copyToClipboard = async (text) => {
     try {
@@ -49,7 +49,7 @@ const WeddingGift = () => {
       <div className="flex flex-col w-fit mx-auto mt-5 space-y-5">
         <div className="p-3 border border-white rounded-xl shadow-xl">
           <p className="font-light">
-            BCA {dataRekening.account1} - Mohammad Yasfiq Apik
+            BCA {dataRekening.account1} - Reiki Alisyahbana
           </p>
           <div className="cursor-pointer flex space-x-2 mx-auto mt-2 items-center px-2 py-1 rounded-full bg-white text-primary text-center w-fit">
             <MdContentCopy size="15px" />
@@ -62,9 +62,9 @@ const WeddingGift = () => {
             </p>
           </div>
         </div>
-        <div className="p-3 border border-white rounded-xl shadow-xl">
+        {/* <div className="p-3 border border-white rounded-xl shadow-xl">
           <p className="font-light">
-            BRI {dataRekening.account2} - Fiony Alveria Tantri
+            DANA {dataRekening.account2} - Reiki Alisyahbana
           </p>
           <div className="cursor-pointer flex space-x-2 mx-auto mt-2 items-center px-2 py-1 rounded-full bg-white text-primary text-center w-fit">
             <MdContentCopy size="15px" />
@@ -76,7 +76,7 @@ const WeddingGift = () => {
               {dataRekening.isCopy2 ? "Copied" : "Copy Number"}
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

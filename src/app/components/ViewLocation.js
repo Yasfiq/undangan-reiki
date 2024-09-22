@@ -3,7 +3,7 @@ import { SiGooglemaps } from "react-icons/si";
 
 const ViewLocationButton = () => {
   const location =
-    "Stasiun Kereta Api Jombang, Jl. Basuki Rahmad No.1, Kaliwungu, Kec. Jombang, Kabupaten Jombang, Jawa Timur 61419";
+    "G865+WXV, Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa Timur 61484";
 
   const handleViewLocation = () => {
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(

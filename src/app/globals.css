@@ -70,14 +70,8 @@ body {
     background-image: url(/images/reiki.jpg);
     transition: 0.7s;
   }
-  .pasangan-pria:hover {
-    background-size: 700px;
-  }
   .pasangan-wanita {
     background-image: url(/images/irma.jpg);
     transition: 0.7s;
-  }
-  .pasangan-wanita:hover {
-    background-size: 700px;
   }
 }

@@ -22,7 +22,7 @@ export default function Home() {
   const [fullName, setFullName] = useState("");
   const [userName, setUserName] = useState("");
   const [wish, setWish] = useState("");
-  const noWhatsapp = "6285891185933";
+  const noWhatsapp = "6285894781791";
   const [wishes, setWishes] = useState([]);
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Home() {
 
   const handleSendWish = async () => {
     await addData({ username: userName, wish });
-    setWishes([...wishes, { username: userName, wish }]);
+    setWishes([{ username: userName, wish }, ...wishes]);
     setUserName("");
     setWish("");
   };
@@ -150,15 +150,15 @@ export default function Home() {
             <p className="font-greatvibes mt-4 text-md">An-Nisa 1</p>
 
             {/* Foto Pasangan */}
-            <div className="flex my-10 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 ">
-              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria bg-[length:900px] bg-center overflow-hidden">
+            <div className="flex my-10 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5">
+              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria overflow-hidden bg-[length:500px] bg-[position:50%_15%] hover:bg-[length:700px] md:bg-[length:600px] md:bg-[position:top] md:hover:bg-[length:900px] md:hover:bg-[position:50%_15%]">
                 <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
                   <h3 className="font-greatvibes text-4xl md:text-5xl">
                     Reiki Alisyahbana
                   </h3>
                   <p className="text-sm md:text-xl font-light font-holyfriday">
                     Putra dari <br />
-                    Mr. Roy Sarob & Mrs. Rina Saona
+                    Bpk. Yudi Yusdiana & Ibu Yoyoh
                   </p>
                   <Link
                     href="https://www.instagram.com/_reyyy05/"
@@ -171,12 +171,14 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-wanita bg-[length:900px] bg-center overflow-hidden">
+              <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-wanita overflow-hidden bg-[length:400px] bg-[position:50%_20%] hover:bg-[length:600px] md:bg-[length:600px] md:bg-[position:top] md:hover:bg-[length:900px] md:hover:bg-[position:50%_15%]">
                 <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
-                  <h3 className="font-greatvibes text-4xl md:text-5xl">Irma</h3>
+                  <h3 className="font-greatvibes text-4xl md:text-5xl">
+                    Tri Ely Ermawati
+                  </h3>
                   <p className="text-sm md:text-xl font-light font-holyfriday">
                     Putri dari <br />
-                    Mr. Man & Mrs. Woman
+                    Bpk. Wagiman & Ibu Inah Wahyuningsih
                   </p>
                   <Link
                     href="https://www.instagram.com/irmaqwe0_/"
@@ -222,7 +224,8 @@ export default function Home() {
                 Sunday, October 13, 2024 at 8:00 AM
               </p>
               <p className="text-md font-holyfriday font-light">
-                Jombang, Jawa Timur, Indonesia
+                Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa
+                Timur 61484
               </p>
 
               {/* View Location */}
@@ -233,10 +236,11 @@ export default function Home() {
                 Reception
               </h3>
               <p className="text-3xl font-challista font-light">
-                Sunday, October 13, 2024 at 10:00 AM
+                Sunday, October 13, 2024 at 11:00 AM
               </p>
               <p className="text-md font-holyfriday font-light">
-                Jombang, Jawa Timur, Indonesia
+                Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa
+                Timur 61484
               </p>
 
               {/* View Location */}
@@ -334,8 +338,11 @@ export default function Home() {
 
                 {fullName && isJoin !== null && (
                   <Link
-                    href={`https://wa.me/${noWhatsapp}?text=Hello, I'm ${fullName} and I Will Join To Your Wedding Reception
-`}
+                    href={`https://wa.me/${noWhatsapp}?text=Hello, I'm ${fullName}, ${
+                      isJoin
+                        ? " I Will Join To Your Wedding Reception"
+                        : "Sorry, I Can't Join To Your weddings Reception"
+                    }`}
                     target="_blank"
                   >
                     <div className="cursor-pointer px-5 py-1 shadow-xl bg-primary text-white rounded-xl mt-5 w-fit">
