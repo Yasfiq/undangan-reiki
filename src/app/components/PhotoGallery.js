@@ -7,13 +7,20 @@ import { useMediaQuery } from "react-responsive";
 import { GrClose, GrNext, GrPrevious } from "react-icons/gr";
 const photos = [
   "/images/prewed-1.jpg",
-  "/images/prewed-2.jpg",
-  "/images/prewed-3.jpg",
-  "/images/prewed-4.jpg",
+  // "/images/prewed-2.jpg",
+  // "/images/prewed-3.jpg",
+  // "/images/prewed-4.jpg",
   "/images/prewed-5.jpg",
+  "/images/prewed-12.jpg",
   "/images/prewed-6.jpg",
+  "/images/prewed-13.jpg",
   "/images/prewed-7.jpg",
+  "/images/prewed-14.jpg",
   "/images/prewed-8.jpg",
+  "/images/prewed-15.jpg",
+  "/images/prewed-9.jpg",
+  "/images/prewed-10.jpg",
+  "/images/prewed-11.jpg",
 ];
 
 const PhotoGallery = () => {
