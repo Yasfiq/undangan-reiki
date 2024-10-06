@@ -23,7 +23,7 @@ const MusicPlayer = () => {
   }, [audioRef]);
 
   return (
-    <div className="fixed right-0 bottom-0 p-2">
+    <div className="fixed right-0 bottom-0 p-2 z-[9999]">
       <audio ref={audioRef}>
         <source src="/audios/lagu.mp3" type="audio/mpeg" />
         Your browser does not support the audio element.

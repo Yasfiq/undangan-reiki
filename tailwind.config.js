@@ -10,7 +10,7 @@ module.exports = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        primary: "#9E7C74",
+        primary: "#9d7f74",
       },
       fontFamily: {
         greatvibes: ["Great Vibes", "sans-serif"],

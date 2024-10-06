@@ -150,7 +150,7 @@ export default function Home() {
             <p className="font-greatvibes mt-4 text-md">An-Nisa 1</p>
 
             {/* Foto Pasangan */}
-            <div className="flex my-10 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 relative">
+            <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 relative">
               <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria overflow-hidden bg-[length:500px] bg-[position:50%_15%] hover:bg-[length:700px] md:bg-[length:600px] md:bg-[position:top] md:hover:bg-[length:900px] md:hover:bg-[position:50%_15%]">
                 <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
                   <h3 className="font-greatvibes text-4xl md:text-5xl">
@@ -191,7 +191,7 @@ export default function Home() {
                   </Link>
                 </div>
               </div>
-              <div className="absolute right-0 bottom-0 translate-y-24">
+              <div className="absolute right-0 bottom-0 translate-y-32 md:translate-y-24 md:hidden opacity-60">
                 <Image
                   src="/images/decoration3.png"
                   alt="decoration2"
@@ -199,7 +199,15 @@ export default function Home() {
                   height={200}
                 />
               </div>
-              <div className="absolute left-0 bottom-0 -translate-x-24 translate-y-40 ">
+              <div className="absolute right-0 bottom-0 hidden md:block translate-x-20 translate-y-40 scale-x-[-1]">
+                <Image
+                  src="/images/decoration2.png"
+                  alt="decoration2"
+                  width={300}
+                  height={300}
+                />
+              </div>
+              <div className="absolute left-0 bottom-0 -translate-x-24 translate-y-44 md:translate-y-40 opacity-60">
                 <Image
                   src="/images/decoration2.png"
                   alt="decoration2"
@@ -211,13 +219,13 @@ export default function Home() {
 
             <Image
               src="/images/wave.png"
-              className="w-full z-[999999999] relative"
+              className="w-full z-[999] relative"
               alt=""
               width={windowWidth}
               height={320}
             />
 
-            <div className="bg-primary text-white -mt-1 pt-10 relative z-[999999999]">
+            <div className="bg-primary text-white -mt-1 pt-10 relative z-[999]">
               {/* Countdown */}
               <h3 className="font-greatvibes text-white text-3xl md:text-5xl font-bold mb-5">
                 Counting Down
@@ -279,7 +287,7 @@ export default function Home() {
             />
 
             <div className="pt-10 relative">
-              <div className="mx-auto absolute translate-x-28 -translate-y-[20%] opacity-70">
+              <div className="mx-auto absolute translate-x-24 -translate-y-[20%] md:translate-x-[310%] md:-translate-y-10 opacity-70">
                 <Image
                   src="/images/decoration4.png"
                   alt="decoration2"
@@ -287,7 +295,7 @@ export default function Home() {
                   height={200}
                 />
               </div>
-              <h3 className="font-greatvibes text-primary text-5xl md:text-5xl font-bold mb-10 z-[999999999] relative mt-20">
+              <h3 className="font-greatvibes text-primary text-5xl md:text-7xl font-bold mb-10 z-[999] relative mt-20">
                 Gallery
               </h3>
 
