@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 
 const Countdown = () => {
   const [timeLeft, setTimeLeft] = useState({
@@ -8,7 +8,7 @@ const Countdown = () => {
     seconds: 0,
   });
 
-  const countdownDate = new Date("2024-10-13T08:00:00").getTime(); // Set target waktu countdown
+  const countdownDate = new Date(process.env.COUTING_DATE).getTime(); // Set target waktu countdown
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -21,7 +21,7 @@ const Countdown = () => {
         setTimeLeft({
           days: Math.floor(distance / (1000 * 60 * 60 * 24)),
           hours: Math.floor(
-            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+            (distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60),
           ),
           minutes: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60)),
           seconds: Math.floor((distance % (1000 * 60)) / 1000),

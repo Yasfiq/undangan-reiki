@@ -1,28 +1,28 @@
-"use client";
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import MusicPlayer from "./components/Music";
-import { FaInstagram } from "react-icons/fa6";
-import Link from "next/link";
-import Countdown from "./components/Countdown";
-import AddToCalendarButton from "./components/AddToCalendar";
-import ViewLocationButton from "./components/ViewLocation";
-import FallingFlowers from "./components/FallingFlowers";
-import Image from "next/image";
-import PhotoGallery from "./components/PhotoGallery";
-import WeddingGift from "./components/WeddingGift";
-import { useSearchParams } from "next/navigation";
-import { addData, getAllData } from "./lib/firebase/collection";
+'use client';
+import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import MusicPlayer from './components/Music';
+import { FaInstagram } from 'react-icons/fa6';
+import Link from 'next/link';
+import Countdown from './components/Countdown';
+import AddToCalendarButton from './components/AddToCalendar';
+import ViewLocationButton from './components/ViewLocation';
+import FallingFlowers from './components/FallingFlowers';
+import Image from 'next/image';
+import PhotoGallery from './components/PhotoGallery';
+import WeddingGift from './components/WeddingGift';
+import { useSearchParams } from 'next/navigation';
+import { addData, getAllData } from './lib/firebase/collection';
 
 export default function Home() {
   const [isOpen, setIsOpen] = useState(false);
   const searchParams = useSearchParams();
   const [windowWidth, setWindowWidth] = useState(0);
   const [isJoin, setIsJoin] = useState(null);
-  const [fullName, setFullName] = useState("");
-  const [userName, setUserName] = useState("");
-  const [wish, setWish] = useState("");
-  const noWhatsapp = "6285894781791";
+  const [fullName, setFullName] = useState('');
+  const [userName, setUserName] = useState('');
+  const [wish, setWish] = useState('');
+  const noWhatsapp = process.env.WHATSAPP_CONFIRMATION;
   const [wishes, setWishes] = useState([]);
 
   useEffect(() => {
@@ -35,15 +35,15 @@ export default function Home() {
     handleResize();
 
     // Event listener untuk menangkap perubahan ukuran layar (resize)
-    window.addEventListener("resize", handleResize);
+    window.addEventListener('resize', handleResize);
 
     // Bersihkan event listener ketika komponen di-unmount
-    return () => window.removeEventListener("resize", handleResize);
+    return () => window.removeEventListener('resize', handleResize);
   }, []);
 
   useEffect(() => {
     const fetchData = async () => {
-      const data = await getAllData("UNDANGAN_REIKI");
+      const data = await getAllData(process.env.PROJECT_NAME);
       setWishes(data);
     };
 
@@ -53,8 +53,8 @@ export default function Home() {
   const handleSendWish = async () => {
     await addData({ username: userName, wish });
     setWishes([{ username: userName, wish }, ...wishes]);
-    setUserName("");
-    setWish("");
+    setUserName('');
+    setWish('');
   };
 
   return (
@@ -71,7 +71,7 @@ export default function Home() {
                   transition={{ duration: 1 }}
                 >
                   <h2 className="text-2xl font-holyfriday">
-                    Dear {searchParams.get("to") || "Invisitory"},
+                    Dear {searchParams.get('to') || 'Invisitory'},
                   </h2>
                   <h1 className="text-4xl font-holyfriday">You're Invited!</h1>
                 </motion.div>
@@ -87,16 +87,16 @@ export default function Home() {
             )}
             {isOpen && (
               <h3 className="text-5xl font-challista">
-                We Are Getting Married
+                {process.env.WELCOME_MESSAGE}
               </h3>
             )}
             <motion.h2
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 2, delay: 1.3 }}
-              className="text-7xl mt-4 font-greatvibes"
+              className="text-5xl mt-20 font-greatvibes"
             >
-              Reiki & Irma
+              {process.env.COUPLE_NAME}
             </motion.h2>
           </div>
           {!isOpen && (
@@ -119,7 +119,7 @@ export default function Home() {
         {isOpen && (
           <motion.div
             initial={{ opacity: 1 }}
-            animate={{ opacity: 0, display: "none" }}
+            animate={{ opacity: 0, display: 'none' }}
             transition={{ duration: 2 }}
             className="bg-black fixed top-0 bottom-0 left-0 right-0"
           ></motion.div>
@@ -150,23 +150,23 @@ export default function Home() {
             <p className="font-greatvibes mt-4 text-md">An-Nisa 1</p>
 
             {/* Foto Pasangan */}
-            <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 relative">
+            {/* <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 relative">
               <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-pria overflow-hidden bg-[length:500px] bg-[position:50%_15%] hover:bg-[length:700px] md:bg-[length:600px] md:bg-[position:top] md:hover:bg-[length:900px] md:hover:bg-[position:50%_15%]">
                 <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
                   <h3 className="font-greatvibes text-4xl md:text-5xl">
-                    Reiki Alisyahbana
+                    {process.env.MAN_NAME}
                   </h3>
                   <p className="text-sm md:text-xl font-light font-holyfriday">
                     Putra dari <br />
-                    Bpk. Yudi Yusdiana & Ibu Yoyoh
+                    {process.env.MAN_PARENT_NAME}
                   </p>
                   <Link
-                    href="https://www.instagram.com/_reyyy05/"
+                    href={`https://www.instagram.com/${process.env.MAN_INSTAGRAM}`}
                     className="mt-2"
                   >
                     <div className="flex items-center space-x-2 hover:text-primary">
                       <FaInstagram size="20px" />
-                      <p>_reyyy05</p>
+                      <p>{process.env.MAN_INSTAGRAM}</p>
                     </div>
                   </Link>
                 </div>
@@ -174,23 +174,103 @@ export default function Home() {
               <div className="md:w-[550px] w-[340px] h-[300px] md:h-[500px] rounded-3xl pasangan-wanita overflow-hidden bg-[length:400px] bg-[position:50%_20%] hover:bg-[length:600px] md:bg-[length:600px] md:bg-[position:top] md:hover:bg-[length:900px] md:hover:bg-[position:50%_15%]">
                 <div className="w-full h-full bg-[rgba(0,0,0,.3)] hover:bg-[rgba(0,0,0,.5)] duration-500 flex flex-col items-center justify-end pb-8">
                   <h3 className="font-greatvibes text-4xl md:text-5xl">
-                    Tri Ely Ermawati
+                    {process.env.WOMAN_NAME}
                   </h3>
                   <p className="text-sm md:text-xl font-light font-holyfriday">
                     Putri dari <br />
-                    Bpk. Wagiman & Ibu Inah Wahyuningsih
+                    {process.env.WOMAN_PARENT_NAME}
                   </p>
                   <Link
-                    href="https://www.instagram.com/irmaqwe0_/"
+                    href={`https://www.instagram.com/${process.env.WOMAN_INSTAGRAM}`}
                     className="mt-2"
                   >
                     <div className="flex items-center space-x-2 hover:text-primary">
                       <FaInstagram size="20px" />
-                      <p>irmaqwe0_</p>
+                      <p>{process.env.WOMAN_INSTAGRAM}</p>
                     </div>
                   </Link>
                 </div>
               </div>
+              <div className="absolute right-0 bottom-0 translate-y-32 md:translate-y-24 md:hidden opacity-60">
+                <Image
+                  src="/images/decoration3.png"
+                  alt="decoration2"
+                  width={200}
+                  height={200}
+                />
+              </div>
+              <div className="absolute right-0 bottom-0 hidden md:block translate-x-20 translate-y-40 scale-x-[-1]">
+                <Image
+                  src="/images/decoration2.png"
+                  alt="decoration2"
+                  width={300}
+                  height={300}
+                />
+              </div>
+              <div className="absolute left-0 bottom-0 -translate-x-24 translate-y-44 md:translate-y-40 opacity-60">
+                <Image
+                  src="/images/decoration2.png"
+                  alt="decoration2"
+                  width={300}
+                  height={300}
+                />
+              </div>
+            </div> */}
+
+            <div className="md:hidden h-[350px] w-[350px] md:w-[350px] md:h-[350px] rounded-full bg-primary/20 mx-auto -mb-[370px] md:-mb-[370px] md:translate-y-52 md:scale-[2.1] translate-y-8 -z-10"></div>
+            <img
+              src="/images/prew.png"
+              className="mt-7 z-10 relative mx-auto"
+            />
+
+            <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col items-center justify-center space-y-[20px] relative">
+              <div className="flex flex-col border-primary text-primary justify-center items-center">
+                <h3 className="font-greatvibes text-4xl md:text-5xl">
+                  {process.env.MAN_NAME}
+                </h3>
+                <p className="text-sm md:text-xl font-light font-holyfriday">
+                  Putra dari <br />
+                  {process.env.MAN_PARENT_NAME}
+                </p>
+                {/* <Link
+                  href={`https://www.instagram.com/${process.env.MAN_INSTAGRAM}`}
+                  className="mt-2"
+                >
+                  <div className="flex items-center space-x-2 hover:text-primary">
+                    <FaInstagram size="20px" />
+                    <p>{process.env.MAN_INSTAGRAM}</p>
+                  </div>
+                </Link> */}
+              </div>
+
+              <motion.h2
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 2, delay: 1.3 }}
+                className="text-5xl font-greatvibes text-primary"
+              >
+                &
+              </motion.h2>
+
+              <div className="flex flex-col border-primary text-primary justify-center items-center">
+                <h3 className="font-greatvibes text-4xl md:text-5xl">
+                  {process.env.WOMAN_NAME}
+                </h3>
+                <p className="text-sm md:text-xl font-light font-holyfriday">
+                  Putra dari <br />
+                  {process.env.WOMAN_PARENT_NAME}
+                </p>
+                {/* <Link
+                  href={`https://www.instagram.com/${process.env.WOMAN_INSTAGRAM}`}
+                  className="mt-2"
+                >
+                  <div className="flex items-center space-x-2 hover:text-primary">
+                    <FaInstagram size="20px" />
+                    <p>{process.env.WOMAN_INSTAGRAM}</p>
+                  </div>
+                </Link> */}
+              </div>
+
               <div className="absolute right-0 bottom-0 translate-y-32 md:translate-y-24 md:hidden opacity-60">
                 <Image
                   src="/images/decoration3.png"
@@ -245,11 +325,10 @@ export default function Home() {
                 Akad
               </h3>
               <p className="text-3xl font-challista font-light">
-                Sunday, October 13, 2024 at 8:00 AM
+                {process.env.AKAD_DATE}
               </p>
               <p className="text-md font-holyfriday font-light">
-                Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa
-                Timur 61484
+                {process.env.AKAD_ADDRESS}
               </p>
 
               {/* View Location */}
@@ -260,11 +339,10 @@ export default function Home() {
                 Reception
               </h3>
               <p className="text-3xl font-challista font-light">
-                Sunday, October 13, 2024 at 11:00 AM
+                {process.env.RECEPTION_DATE}
               </p>
-              <p className="text-md font-holyfriday font-light">
-                Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa
-                Timur 61484
+              <p className="text-md font-holyfriday font-light w-[85%] mx-auto">
+                {process.env.RECEPTION_ADDRESS}
               </p>
 
               {/* View Location */}
@@ -278,37 +356,41 @@ export default function Home() {
               />
             </div>
 
-            <Image
-              src="/images/wave2.png"
-              className="w-full rotate-180 -mt-1"
-              alt=""
-              width={windowWidth}
-              height={320}
-            />
-
-            <div className="pt-10 relative">
-              <div className="mx-auto absolute translate-x-24 -translate-y-[20%] md:translate-x-[310%] md:-translate-y-10 opacity-70">
+            {process.env.WITH_GALLERY === 'on' && (
+              <React.Fragment>
                 <Image
-                  src="/images/decoration4.png"
-                  alt="decoration2"
-                  width={200}
-                  height={200}
+                  src="/images/wave2.png"
+                  className="w-full rotate-180 -mt-1"
+                  alt=""
+                  width={windowWidth}
+                  height={320}
                 />
-              </div>
-              <h3 className="font-greatvibes text-primary text-5xl md:text-7xl font-bold mb-10 z-[999] relative mt-20">
-                Gallery
-              </h3>
 
-              <PhotoGallery />
-            </div>
+                <div className="pt-10 relative">
+                  <div className="mx-auto absolute translate-x-24 -translate-y-[20%] md:translate-x-[310%] md:-translate-y-10 opacity-70">
+                    <Image
+                      src="/images/decoration4.png"
+                      alt="decoration2"
+                      width={200}
+                      height={200}
+                    />
+                  </div>
+                  <h3 className="font-greatvibes text-primary text-5xl md:text-7xl font-bold mb-10 z-[999] relative mt-20">
+                    Gallery
+                  </h3>
 
-            <Image
-              src="/images/wave3.png"
-              className="w-full mt-20"
-              alt=""
-              width={windowWidth}
-              height={320}
-            />
+                  <PhotoGallery />
+                </div>
+
+                <Image
+                  src="/images/wave3.png"
+                  className="w-full mt-20"
+                  alt=""
+                  width={windowWidth}
+                  height={320}
+                />
+              </React.Fragment>
+            )}
 
             <div className="bg-primary text-white pb-16">
               <WeddingGift />
@@ -372,7 +454,7 @@ export default function Home() {
                   <Link
                     href={`https://wa.me/${noWhatsapp}?text=Hello, I'm ${fullName}, ${
                       isJoin
-                        ? " I Will Join To Your Wedding Reception"
+                        ? ' I Will Join To Your Wedding Reception'
                         : "Sorry, I Can't Join To Your weddings Reception"
                     }`}
                     target="_blank"

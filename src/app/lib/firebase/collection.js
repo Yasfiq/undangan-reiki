@@ -1,22 +1,22 @@
-import { collection, addDoc, query, where, getDocs } from "firebase/firestore";
-import db from "./firebase.config";
+import { collection, addDoc, query, where, getDocs } from 'firebase/firestore';
+import db from './firebase.config';
 
 export const addData = async (data) => {
   try {
-    const response = await addDoc(collection(db, "wishes"), {
+    const response = await addDoc(collection(db, 'wishes'), {
       ...data,
-      project: "UNDANGAN_REIKI",
+      project: process.env.PROJECT_NAME,
     });
   } catch (e) {
-    console.error("Gagal menambahkan data", e);
+    console.error('Gagal menambahkan data', e);
   }
 };
 
 export const getAllData = async (projectName) => {
   try {
     const q = query(
-      collection(db, "wishes"),
-      where("project", "==", projectName)
+      collection(db, 'wishes'),
+      where('project', '==', projectName),
     );
     let data = [];
     const response = await getDocs(q);
@@ -25,6 +25,6 @@ export const getAllData = async (projectName) => {
     });
     return data;
   } catch (e) {
-    console.error("Gagal mendapatkan semua data", e);
+    console.error('Gagal mendapatkan semua data', e);
   }
 };

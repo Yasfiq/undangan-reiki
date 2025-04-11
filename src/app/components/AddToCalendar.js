@@ -1,23 +1,23 @@
-import React from "react";
-import { FaCalendarAlt } from "react-icons/fa";
+import React from 'react';
+import { FaCalendarAlt } from 'react-icons/fa';
 
 const AddToCalendarButton = () => {
   const event = {
-    title: "Wedding Invitation - Reiki & Irma",
-    location: "Jombang, Indonesia",
-    startDate: "2024-10-12T08:00:00", // Format ISO: YYYY-MM-DDTHH:mm:ss
-    endDate: "2024-10-12T18:00:00",
+    title: `Wedding Invitation - ${process.env.COUPLE_NAME}`,
+    location: process.env.LOCATION_FOR_CALENDAR,
+    startDate: process.env.START_DATE_FOR_CALENDAR, // Format ISO: YYYY-MM-DDTHH:mm:ss
+    endDate: process.env.END_DATE_FOR_CALENDAR,
   };
 
   const handleAddToCalendar = () => {
     const googleCalendarUrl = `https://www.google.com/calendar/render?action=TEMPLATE&text=${encodeURIComponent(
-      event.title
-    )}&dates=${event.startDate.replace(/[-:]/g, "")}/${event.endDate.replace(
+      event.title,
+    )}&dates=${event.startDate.replace(/[-:]/g, '')}/${event.endDate.replace(
       /[-:]/g,
-      ""
+      '',
     )}&location=${encodeURIComponent(event.location)}&sf=true&output=xml`;
 
-    window.open(googleCalendarUrl, "_blank");
+    window.open(googleCalendarUrl, '_blank');
   };
 
   return (

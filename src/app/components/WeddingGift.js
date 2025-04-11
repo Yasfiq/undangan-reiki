@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { FaGift } from "react-icons/fa6";
-import { MdContentCopy } from "react-icons/md";
+import React, { useEffect, useState } from 'react';
+import { FaGift } from 'react-icons/fa6';
+import { MdContentCopy } from 'react-icons/md';
 
 const WeddingGift = () => {
   const [dataRekening, setDataRekening] = useState({
     isCopy1: false,
     isCopy2: false,
-    account1: "7361250536",
+    account1: '1770023085589',
     // account2: "0234562313",
   });
   const copyToClipboard = async (text) => {
@@ -14,7 +14,7 @@ const WeddingGift = () => {
       // Gunakan API Clipboard modern
       await navigator.clipboard.writeText(text);
     } catch (err) {
-      console.error("Failed to copy: ", err);
+      console.error('Failed to copy: ', err);
     }
   };
 
@@ -23,14 +23,14 @@ const WeddingGift = () => {
       copyToClipboard(dataRekening.account1);
       setInterval(
         () => setDataRekening({ ...dataRekening, isCopy1: false }),
-        1000
+        1000,
       );
     }
     if (dataRekening.isCopy2) {
       copyToClipboard(dataRekening.account2);
       setInterval(
         () => setDataRekening({ ...dataRekening, isCopy2: false }),
-        1000
+        1000,
       );
     }
   }, [dataRekening.isCopy1, dataRekening.isCopy2]);
@@ -49,7 +49,7 @@ const WeddingGift = () => {
       <div className="flex flex-col w-fit mx-auto mt-5 space-y-5">
         <div className="p-3 border border-white rounded-xl shadow-xl">
           <p className="font-light">
-            BCA {dataRekening.account1} - Reiki Alisyahbana
+            Mandiri {dataRekening.account1} - Suci Maulida
           </p>
           <div className="cursor-pointer flex space-x-2 mx-auto mt-2 items-center px-2 py-1 rounded-full bg-white text-primary text-center w-fit">
             <MdContentCopy size="15px" />
@@ -58,7 +58,7 @@ const WeddingGift = () => {
                 setDataRekening({ ...dataRekening, isCopy1: true })
               }
             >
-              {dataRekening.isCopy1 ? "Copied" : "Copy Number"}
+              {dataRekening.isCopy1 ? 'Copied' : 'Copy Number'}
             </p>
           </div>
         </div>

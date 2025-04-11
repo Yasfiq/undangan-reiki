@@ -1,15 +1,14 @@
-import React from "react";
-import { SiGooglemaps } from "react-icons/si";
+import React from 'react';
+import { SiGooglemaps } from 'react-icons/si';
 
 const ViewLocationButton = () => {
-  const location =
-    "G865+WXV, Kerandekan, Kedung Mlati, Kec. Kesamben, Kabupaten Jombang, Jawa Timur 61484";
+  const location = process.env.AKAD_MAPS_ADDRESS;
 
   const handleViewLocation = () => {
     const googleMapsUrl = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      location
+      location,
     )}`;
-    window.open(googleMapsUrl, "_blank");
+    window.open(googleMapsUrl, '_blank');
   };
 
   return (
