@@ -1,7 +1,7 @@
-import "./globals.css";
+import './globals.css';
 
 export const metadata = {
-  title: "Wedding Invitation - Reiki & Irma",
+  title: 'Wedding Invitation - Muhammad Maulana Firdaus & Suci Maulida',
 };
 
 export default function RootLayout({ children }) {
