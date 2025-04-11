@@ -257,7 +257,7 @@ export default function Home() {
                   {process.env.WOMAN_NAME}
                 </h3>
                 <p className="text-sm md:text-xl font-light font-holyfriday">
-                  Putra dari <br />
+                  Putri dari <br />
                   {process.env.WOMAN_PARENT_NAME}
                 </p>
                 {/* <Link
