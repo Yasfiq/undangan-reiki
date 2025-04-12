@@ -12,7 +12,7 @@ const nextConfig = {
     FIREBASE_APP_ID: '1:555334899136:web:214f696b715cdd34e3e425',
     FIREBASE_MEASUREMENT_ID: 'G-REHGNE26C8',
     WELCOME_MESSAGE: 'We Are Getting Married',
-    COUPLE_NAME: 'Muhammad Maulana Firdaus & Suci Maulida',
+    COUPLE_NAME: 'Muhammad Maulana Firdaus \n & \n Suci Maulida',
     WITH_COUPLE_PICTURE: 'on',
     MAN_NAME: 'Muhammad Maulana Firdaus',
     WOMAN_NAME: 'Suci Maulida',

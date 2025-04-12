@@ -79,14 +79,14 @@ export default function Home() {
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1, delay: 0.5 }}
-                  className="text-3xl font-bold font-challista"
+                  className="text-3xl font-bold font-monotypecorsiva"
                 >
                   The Wedding Celebration of
                 </motion.h3>
               </>
             )}
             {isOpen && (
-              <h3 className="text-5xl font-challista">
+              <h3 className="text-4xl font-monotypecorsiva">
                 {process.env.WELCOME_MESSAGE}
               </h3>
             )}
@@ -94,7 +94,7 @@ export default function Home() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 2, delay: 1.3 }}
-              className="text-5xl mt-20 font-greatvibes"
+              className="text-3xl mt-20 font-bold font-monotypecorsiva whitespace-pre-line"
             >
               {process.env.COUPLE_NAME}
             </motion.h2>
@@ -142,12 +142,12 @@ export default function Home() {
           </svg>
 
           <div className="bg-white text-primary text-center min-h-screen py-10 md:pb-20 -mt-1">
-            <h3 className="w-[80%] mx-auto font-greatvibes text-xl">
+            <h3 className="w-[80%] mx-auto font-monotypecorsiva text-xl">
               “Wahai manusia, bertakwalah kepada Tuhan-mu Yang menciptakan kamu
               dari satu jiwa dan darinya Dia menciptakan jodohnya, dan
               mengembang-biakan dari keduanya banyak laki-laki dan perempuan”.
             </h3>
-            <p className="font-greatvibes mt-4 text-md">An-Nisa 1</p>
+            <p className="font-monotypecorsiva mt-4 text-md">An-Nisa 1</p>
 
             {/* Foto Pasangan */}
             {/* <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col md:flex-row items-center justify-center space-y-5 md:space-y-0 md:space-x-5 relative">
@@ -225,10 +225,10 @@ export default function Home() {
 
             <div className="flex mt-10 mb-16 md:my-20 mx-auto text-white flex-col items-center justify-center space-y-[20px] relative">
               <div className="flex flex-col border-primary text-primary justify-center items-center">
-                <h3 className="font-greatvibes text-4xl md:text-5xl">
+                <h3 className="font-monotypecorsiva text-4xl md:text-5xl">
                   {process.env.MAN_NAME}
                 </h3>
-                <p className="text-sm md:text-xl font-light font-holyfriday">
+                <p className="text-sm md:text-xl font-light font-monotypecorsiva">
                   Putra dari <br />
                   {process.env.MAN_PARENT_NAME}
                 </p>
@@ -247,16 +247,16 @@ export default function Home() {
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ duration: 2, delay: 1.3 }}
-                className="text-5xl font-greatvibes text-primary"
+                className="text-5xl font-monotypecorsiva text-primary"
               >
                 &
               </motion.h2>
 
               <div className="flex flex-col border-primary text-primary justify-center items-center">
-                <h3 className="font-greatvibes text-4xl md:text-5xl">
+                <h3 className="font-monotypecorsiva text-4xl md:text-5xl">
                   {process.env.WOMAN_NAME}
                 </h3>
-                <p className="text-sm md:text-xl font-light font-holyfriday">
+                <p className="text-sm md:text-xl font-light font-monotypecorsiva">
                   Putri dari <br />
                   {process.env.WOMAN_PARENT_NAME}
                 </p>
@@ -307,7 +307,7 @@ export default function Home() {
 
             <div className="bg-primary text-white -mt-1 pt-10 relative z-[999]">
               {/* Countdown */}
-              <h3 className="font-greatvibes text-white text-3xl md:text-5xl font-bold mb-5">
+              <h3 className="font-monotypecorsiva text-white text-3xl md:text-5xl font-bold mb-5">
                 Counting Down
               </h3>
               <Countdown />
@@ -321,10 +321,10 @@ export default function Home() {
                 height={100}
                 className="mt-20 mx-auto mb-10"
               />
-              <h3 className="font-greatvibes text-white text-5xl font-bold mb-5">
+              <h3 className="font-monotypecorsiva text-white text-5xl font-bold mb-5">
                 Akad
               </h3>
-              <p className="text-3xl font-challista font-light">
+              <p className="text-3xl font-monotypecorsiva font-light">
                 {process.env.AKAD_DATE}
               </p>
               <p className="text-md font-holyfriday font-light">
@@ -335,10 +335,10 @@ export default function Home() {
               <ViewLocationButton />
 
               {/* Reception */}
-              <h3 className="font-greatvibes text-white text-5xl font-bold mb-5 mt-10">
+              <h3 className="font-monotypecorsiva text-white text-5xl font-bold mb-5 mt-10">
                 Reception
               </h3>
-              <p className="text-3xl font-challista font-light">
+              <p className="text-3xl font-monotypecorsiva font-light">
                 {process.env.RECEPTION_DATE}
               </p>
               <p className="text-md font-holyfriday font-light w-[85%] mx-auto">
@@ -405,7 +405,7 @@ export default function Home() {
             />
 
             <div className="bg-white text-primary pt-10 font-holyfriday">
-              <h3 className="font-greatvibes text-3xl md:text-5xl font-bold mb-5">
+              <h3 className="font-holyfriday text-3xl md:text-5xl mb-5">
                 Reservation
               </h3>
 
@@ -466,7 +466,7 @@ export default function Home() {
                 )}
               </div>
 
-              <h3 className="font-greatvibes text-3xl md:text-5xl font-bold mb-5 mt-20">
+              <h3 className="font-holyfriday text-3xl md:text-5xl mb-5 mt-20">
                 Send Wishes
               </h3>
 

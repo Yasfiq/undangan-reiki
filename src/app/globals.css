@@ -36,7 +36,7 @@ body {
   top: -10vh;
   width: 30px;
   height: 30px;
-  background-image: url("/images/bunga.webp"); /* Gambar bunga */
+  background-image: url('/images/bunga.webp'); /* Gambar bunga */
   background-size: contain;
   background-repeat: no-repeat;
   opacity: 0.8;
@@ -44,22 +44,27 @@ body {
 }
 
 @font-face {
-  font-family: "Great Vibes";
+  font-family: 'Great Vibes';
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/GreatVibes-Regular.ttf);
 }
 
 @font-face {
-  font-family: "Holy Friday";
+  font-family: 'Holy Friday';
   font-style: normal;
   font-weight: 400;
   src: url(/fonts/Holy-Friday.otf);
 }
 
 @font-face {
-  font-family: "Challista Script";
+  font-family: 'Challista Script';
   src: url(/fonts/Challista.otf);
+}
+
+@font-face {
+  font-family: 'Monotype Corsiva';
+  src: url(/fonts/Monotype-Corsiva-Regular.ttf);
 }
 
 @layer utilities {

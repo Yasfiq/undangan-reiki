@@ -38,10 +38,10 @@ const WeddingGift = () => {
   return (
     <div className="text-white font-holyfriday font-light">
       <FaGift size="100px" className="mx-auto" />
-      <h3 className="font-greatvibes text-white text-3xl md:text-5xl font-bold mb-5">
+      <h3 className="font-monotypecorsiva text-white text-3xl md:text-5xl font-bold mb-5">
         Wedding Gift
       </h3>
-      <p className="w-[90%] md:w-1/2 mx-auto font-greatvibes text-xl">
+      <p className="w-[90%] md:w-1/2 mx-auto font-monotypecorsiva text-xl">
         Hopefully this limitation does not reduce happiness for both of us and
         does not eliminate the blessings from all of you. Your prayer for our
         marriage is the greatest gift of all.
